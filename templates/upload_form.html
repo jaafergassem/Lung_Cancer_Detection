@@ -1,0 +1,129 @@
+
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Jaafer Website - Cancer Detection</title>
+     <style>
+         body {
+             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+             background-color: #f8f8f8;
+             text-align: center;
+             margin: 0;
+             padding: 0;
+         }
+ 
+         form {
+             max-width: 400px;
+             margin: 50px auto;
+             background-color: #fff;
+             padding: 20px;
+             border-radius: 8px;
+             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+         }
+ 
+         h1 {
+             font-size: 28px;
+             color: #333;
+             margin-bottom: 20px;
+         }
+ 
+         label {
+             display: block;
+             margin-bottom: 10px;
+             font-weight: bold;
+             color: #555;
+         }
+ 
+         input[type="file"] {
+             display: none;
+         }
+ 
+         .custom-file-upload {
+             cursor: pointer;
+             background-color: #3498db; /* Nouvelle couleur pour le bouton */
+             color: #fff;
+             padding: 12px 24px;
+             border: none;
+             border-radius: 4px;
+             font-size: 18px;
+             display: inline-block;
+         }
+ 
+         #selectedImage {
+             max-width: 100%;
+             margin-top: 10px;
+         }
+ 
+         p {
+             margin-bottom: 20px;
+             color: #777;
+         }
+ 
+         button {
+             background-color: #4caf50;
+             color: #fff;
+             padding: 12px 24px;
+             border: none;
+             border-radius: 4px;
+             cursor: pointer;
+             font-size: 18px;
+             margin-top: 10px;
+         }
+ 
+         button:hover {
+             background-color: #45a049;
+         }
+     </style>
+ </head>
+ <body>
+ 
+ <form method="post" enctype="multipart/form-data" action="{% url 'predict_maladie' %}">
+     {% csrf_token %}
+     <h1>Welcome to Jaafer Website Cancer Detection</h1>
+     <label for="image">Select a lung image:</label>
+     <input type="file" name="image" id="fileInput" accept="image/*" onchange="displayImage(this)" required>
+     <label for="fileInput" class="custom-file-upload">Choose File</label>
+     <p>Select a lung image for analysis by clicking the button above:</p>
+     <img id="selectedImage" alt="Selected Image">
+     <button type="submit">Submit</button>
+ </form>
+ 
+ <script>
+     function displayImage(input) {
+         var file = input.files[0];
+         if (file) {
+             var reader = new FileReader();
+             reader.onload = function (e) {
+                 document.getElementById('selectedImage').src = e.target.result;
+             };
+             reader.readAsDataURL(file);
+         }
+     }
+ </script>
+ 
+ </body>
+ </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
